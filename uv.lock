@@ -1525,8 +1525,6 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "pystac-client" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
     { name = "python-dotenv" },
     { name = "pytz" },
     { name = "requests" },
@@ -1539,8 +1537,8 @@ dependencies = [
 
 [package.dev-dependencies]
 test = [
-    { name = "httpx" },
     { name = "pytest" },
+    { name = "pytest-asyncio" },
 ]
 
 [package.metadata]
@@ -1560,8 +1558,6 @@ requires-dist = [
     { name = "pydantic", specifier = "==2.11.1" },
     { name = "pydantic-settings", specifier = "==2.8.1" },
     { name = "pystac-client", specifier = "==0.8.6" },
-    { name = "pytest", specifier = "==8.3.4" },
-    { name = "pytest-asyncio", specifier = "==0.25.0" },
     { name = "python-dotenv", specifier = "==1.0.1" },
     { name = "pytz", specifier = "==2024.2" },
     { name = "requests", specifier = "==2.31.0" },
@@ -1574,8 +1570,8 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 test = [
-    { name = "httpx", specifier = ">=0.28.1" },
     { name = "pytest", specifier = ">=8.3.4" },
+    { name = "pytest-asyncio", specifier = "==0.25.0" },
 ]
 
 [[package]]

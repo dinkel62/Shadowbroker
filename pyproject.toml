@@ -19,8 +19,6 @@ dependencies = [
     "pydantic==2.11.1",
     "pydantic-settings==2.8.1",
     "pystac-client==0.8.6",
-    "pytest==8.3.4",
-    "pytest-asyncio==0.25.0",
     "python-dotenv==1.0.1",
     "pytz==2024.2",
     "requests==2.31.0",
@@ -32,4 +30,4 @@ dependencies = [
 ]
 
 [dependency-groups]
-test = ["pytest>=8.3.4", "httpx>=0.28.1"]
+test = ["pytest>=8.3.4", "pytest-asyncio==0.25.0"]
