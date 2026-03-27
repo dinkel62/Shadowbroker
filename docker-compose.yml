@@ -3,7 +3,8 @@ services:
     image: ghcr.io/bigbodycobain/shadowbroker-backend:latest
     container_name: shadowbroker-backend
     ports:
-      - "${BIND:-127.0.0.1}:8080:8000"
+      # Port 8001 nach außen, 8000 intern - löst den Portainer-Konflikt!
+      - "8001:8000"
     environment:
       - AIS_API_KEY=${AIS_API_KEY}
       - OPENSKY_CLIENT_ID=${OPENSKY_CLIENT_ID}
@@ -11,11 +12,8 @@ services:
       - LTA_ACCOUNT_KEY=${LTA_ACCOUNT_KEY}
       - ADMIN_KEY=${ADMIN_KEY:-}
       - FINNHUB_API_KEY=${FINNHUB_API_KEY:-}
-      # Override allowed CORS origins (comma-separated). Auto-detects LAN IPs if empty.
       - CORS_ORIGINS=${CORS_ORIGINS:-}
-      # Default Infonet relay peer so fresh installs can sync immediately.
       - MESH_RELAY_PEERS=${MESH_RELAY_PEERS:-http://cipher0.shadowbroker.info:8000}
-      # Shared transport auth for mesh peer push (default matches baked-in testnet secret).
       - MESH_PEER_PUSH_SECRET=${MESH_PEER_PUSH_SECRET:-Mv63UvLfwqOEVWeRBXjA8MtFl2nEkkhUlLYVHiX1Zzo}
     volumes:
       - backend_data:/app/data
@@ -36,10 +34,10 @@ services:
     image: ghcr.io/bigbodycobain/shadowbroker-frontend:latest
     container_name: shadowbroker-frontend
     ports:
-      - "${BIND:-127.0.0.1}:3000:3000"
+      # Die Weboberfläche erreichst du später über diesen Port
+      - "3000:3000"
     environment:
-      # Points the Next.js server-side proxy at the backend container via Docker networking.
-      # Change this if your backend runs on a different host or port.
+      # Das bleibt auf 8000, da Frontend und Backend intern im Docker-Netzwerk kommunizieren
       - BACKEND_URL=http://backend:8000
     depends_on:
       backend:
